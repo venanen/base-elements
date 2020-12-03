@@ -13,27 +13,6 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  hooks: {
-    generate: {
-      async done(builder) {
-        // This makes sure nuxt generate does finish without running into a timeout issue.
-        // See https://github.com/nuxt-community/firebase-module/issues/93
-        const appModule = await import('./.nuxt/firebase/app.js')
-        const { session } = await appModule.default(
-          builder.options.firebase.config,
-          {
-            res: null,
-          }
-        )
-        try {
-          session.database().goOffline()
-        } catch (e) {}
-        try {
-          session.firestore().terminate()
-        } catch (e) {}
-      },
-    },
-  },
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     'ant-design-vue/dist/antd.css',
@@ -58,7 +37,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
     '@nuxtjs/firebase',
   ],
 

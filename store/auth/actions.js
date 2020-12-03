@@ -7,7 +7,6 @@ export default {
         commit('RESET_ERROR')
         commit('stopLoginLoading')
         commit('user/LOGIN', { user }, { root: true })
-        // this.$router.push('/')
       })
       .catch((err) => {
         commit('HANDLE_ERROR', { err })
@@ -17,8 +16,7 @@ export default {
   onAuthStateChanged({ commit }, { authUser }) {
     if (!authUser) {
       commit('user/LOGOUT', null, { root: true })
-      return
     }
-    commit('user/LOGIN', { user: authUser }, { root: true })
+    // commit('user/LOGIN', { user: authUser }, { root: true })
   },
 }

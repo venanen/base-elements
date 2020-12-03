@@ -6,5 +6,6 @@ export default {
   LOGIN(state, { user }) {
     state.isAuth = true
     Object.assign(state.user, user)
+    this.$router.push('/')
   },
 }

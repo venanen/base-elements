@@ -41,6 +41,7 @@
             block
             type="primary"
             :loading="isLoginLoading"
+            :disabled="isLoginLoading"
             @click="login"
           >
             Войти</a-button
@@ -84,13 +85,6 @@ export default {
     },
   }),
   computed: {
-    isButtonEnable() {
-      return (
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-          this.form.email
-        ) && this.form.password.length > 0
-      )
-    },
     ...mapState({
       isLoginLoading: (state) => state.auth.isLoginLoading,
       error: (state) => state.auth.error,
