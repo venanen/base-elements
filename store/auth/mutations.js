@@ -16,6 +16,7 @@ export default {
         state.error.text = 'Неправильный пароль'
         break
       default:
+        console.log(err)
         break
     }
   },

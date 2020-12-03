@@ -7,6 +7,7 @@ export default {
         commit('RESET_ERROR')
         commit('stopLoginLoading')
         commit('user/LOGIN', { user }, { root: true })
+        // this.$router.push('/')
       })
       .catch((err) => {
         commit('HANDLE_ERROR', { err })

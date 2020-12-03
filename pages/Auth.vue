@@ -10,12 +10,14 @@
       />
       <br />
       <a-form-model
+        ref="form"
         label-align="left"
         :model="form"
+        :rules="rules"
         :label-col="labelCol"
         :wrapper-col="wrapperCol"
       >
-        <a-form-model-item label="Почта:">
+        <a-form-model-item label="Почта:" prop="email" has-feedback>
           <a-input
             v-model="form.email"
             size="large"
@@ -23,7 +25,7 @@
           />
         </a-form-model-item>
 
-        <a-form-model-item label="Пароль:">
+        <a-form-model-item label="Пароль:" prop="password" has-feedback>
           <a-input-password
             v-model="form.password"
             size="large"
@@ -39,7 +41,6 @@
             block
             type="primary"
             :loading="isLoginLoading"
-            :disabled="!isButtonEnable"
             @click="login"
           >
             Войти</a-button
@@ -63,6 +64,24 @@ export default {
       email: 'm@m.ru',
       password: '123456',
     },
+    rules: {
+      email: [
+        {
+          required: true,
+          message: 'Введите почту',
+        },
+        {
+          type: 'email',
+          message: 'Почта некорректна',
+        },
+      ],
+      password: [
+        {
+          required: true,
+          message: 'Введите пароль',
+        },
+      ],
+    },
   }),
   computed: {
     isButtonEnable() {
@@ -79,9 +98,15 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch('auth/login', {
-        login: this.form.email,
-        password: this.form.password,
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.$store.dispatch('auth/login', {
+            login: this.form.email,
+            password: this.form.password,
+          })
+        } else {
+          return false
+        }
       })
     },
   },

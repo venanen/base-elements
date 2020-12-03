@@ -3,7 +3,7 @@
     <a-card title="Регистрация">
       <NuxtLink slot="extra" to="auth">Авторизация</NuxtLink>
       <a-form-model
-        ref="ruleForm"
+        ref="form"
         label-align="left"
         :rules="rules"
         :model="form"
@@ -47,7 +47,9 @@
         </a-form-model-item>
 
         <a-form-model-item style="margin-bottom: 0" :wrapper-col="{ span: 24 }">
-          <a-button size="large" block type="primary"> Регистрация</a-button>
+          <a-button size="large" block type="primary" @click="register">
+            Регистрация</a-button
+          >
         </a-form-model-item>
       </a-form-model>
     </a-card>
@@ -60,17 +62,7 @@ import BgContainer from '@/components/BgContainer'
 export default {
   name: 'SignUp',
   components: { BgContainer },
-  data: () => {
-    const validateRepassword = (rule, value, callback) => {
-      if (value === '') {
-        console.log(value, this.form.password)
-        callback(new Error('Please input the password again'))
-      } else if (value !== this.form.password) {
-        callback(new Error('Пароли не совпадают'))
-      } else {
-        return true
-      }
-    }
+  data() {
     return {
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
@@ -114,11 +106,35 @@ export default {
         ],
         repassword: [
           {
-            validator: validateRepassword,
+            required: true,
+            message: 'Заполните это поле',
+          },
+          {
+            validator: this.validateRepassword,
           },
         ],
       },
     }
+  },
+  methods: {
+    validateRepassword(rule, value, callback) {
+      // console.log(this.form)
+      if (value !== this.form.password) {
+        callback(new Error('Пароли не совпадают'))
+      } else {
+        callback()
+      }
+    },
+    register() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
   },
 }
 </script>
