@@ -6,7 +6,6 @@ export default {
     state.isLoginLoading = false
   },
   HANDLE_ERROR: (state, { err }) => {
-    console.log(err)
     switch (err.code) {
       case 'auth/user-not-found':
         state.error.hasError = true

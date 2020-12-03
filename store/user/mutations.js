@@ -1,11 +1,10 @@
 export default {
-  LOGOUT: (state) => {
+  LOGOUT(state) {
     state.isAuth = false
-    state.user = {}
+    Object.assign(state.user, {})
   },
-  LOGIN: (state, { user }) => {
+  LOGIN(state, { user }) {
     state.isAuth = true
-    state.user = user
-    console.log(user)
+    Object.assign(state.user, user)
   },
 }
