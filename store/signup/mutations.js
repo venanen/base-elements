@@ -6,7 +6,6 @@ export default {
     state.isSignupLoading = false
   },
   HANDLE_ERROR(state, { err }) {
-    console.log(err)
     switch (err.code) {
       case 'auth/email-already-in-use':
         state.error.hasError = true

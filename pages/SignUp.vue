@@ -128,6 +128,10 @@ export default {
       },
     }
   },
+  computed: mapState({
+    isSignupLoading: (state) => state.signup.isSignupLoading,
+    error: (state) => state.signup.error,
+  }),
   methods: {
     validateRepassword(rule, value, callback) {
       // console.log(this.form)
@@ -147,12 +151,6 @@ export default {
         }
       })
     },
-  },
-  computed: {
-    ...mapState({
-      isSignupLoading: (state) => state.signup.isSignupLoading,
-      error: (state) => state.signup.error,
-    }),
   },
 }
 </script>

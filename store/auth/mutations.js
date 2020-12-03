@@ -1,8 +1,8 @@
 export default {
-  startLoginLoading: (state) => {
+  START_LOGIN_LOADING: (state) => {
     state.isLoginLoading = true
   },
-  stopLoginLoading: (state) => {
+  STOP_LOGIN_LOADING: (state) => {
     state.isLoginLoading = false
   },
   HANDLE_ERROR: (state, { err }) => {
@@ -16,7 +16,8 @@ export default {
         state.error.text = 'Неправильный пароль'
         break
       default:
-        console.log(err)
+        state.error.hasError = true
+        state.error.text = err.message
         break
     }
   },
