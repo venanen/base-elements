@@ -62,8 +62,8 @@ export default {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
     form: {
-      email: 'm@m.ru',
-      password: '123456',
+      email: '',
+      password: '',
     },
     rules: {
       email: [

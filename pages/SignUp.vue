@@ -2,6 +2,12 @@
   <bg-container>
     <a-card title="Регистрация">
       <NuxtLink slot="extra" to="auth">Авторизация</NuxtLink>
+      <a-alert
+        v-if="error.hasError"
+        type="error"
+        :message="error.text"
+        banner
+      />
       <a-form-model
         ref="form"
         label-align="left"
@@ -22,7 +28,7 @@
           <a-input
             v-model="form.mail"
             size="large"
-            placeholder="Введите логин"
+            placeholder="Введите почту"
           />
         </a-form-model-item>
 
@@ -47,7 +53,13 @@
         </a-form-model-item>
 
         <a-form-model-item style="margin-bottom: 0" :wrapper-col="{ span: 24 }">
-          <a-button size="large" block type="primary" @click="register">
+          <a-button
+            size="large"
+            block
+            type="primary"
+            :loading="isSignupLoading"
+            @click="register"
+          >
             Регистрация</a-button
           >
         </a-form-model-item>
@@ -58,7 +70,7 @@
 
 <script>
 import BgContainer from '@/components/BgContainer'
-
+import { mapState } from 'vuex'
 export default {
   name: 'SignUp',
   components: { BgContainer },
@@ -100,8 +112,8 @@ export default {
             message: 'Заполните это поле',
           },
           {
-            min: 4,
-            message: 'Минимум 4 символа',
+            min: 6,
+            message: 'Минимум 6 символа',
           },
         ],
         repassword: [
@@ -128,13 +140,19 @@ export default {
     register() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
+          this.$store.dispatch('signup/signUp', {
+            email: this.form.mail,
+            password: this.form.password,
+          })
         }
       })
     },
+  },
+  computed: {
+    ...mapState({
+      isSignupLoading: (state) => state.signup.isSignupLoading,
+      error: (state) => state.signup.error,
+    }),
   },
 }
 </script>
