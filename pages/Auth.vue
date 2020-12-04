@@ -19,14 +19,16 @@
       >
         <a-form-model-item label="Почта:" prop="email" has-feedback>
           <a-input
+            id="mail"
             v-model="form.email"
             size="large"
-            placeholder="Введите почта"
+            placeholder="Введите почту"
           />
         </a-form-model-item>
 
         <a-form-model-item label="Пароль:" prop="password" has-feedback>
           <a-input-password
+            id="password"
             v-model="form.password"
             size="large"
             placeholder="Введите пароль"
