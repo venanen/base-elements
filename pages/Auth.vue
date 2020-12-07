@@ -17,7 +17,12 @@
         :label-col="labelCol"
         :wrapper-col="wrapperCol"
       >
-        <a-form-model-item label="Почта:" prop="email" has-feedback>
+        <a-form-model-item
+          id="item-mail"
+          label="Почта:"
+          prop="email"
+          :has-feedback="true"
+        >
           <a-input
             id="mail"
             v-model="form.email"
@@ -26,7 +31,12 @@
           />
         </a-form-model-item>
 
-        <a-form-model-item label="Пароль:" prop="password" has-feedback>
+        <a-form-model-item
+          id="item-password"
+          label="Пароль:"
+          prop="password"
+          :has-feedback="true"
+        >
           <a-input-password
             id="password"
             v-model="form.password"
