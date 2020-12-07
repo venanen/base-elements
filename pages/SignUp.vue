@@ -16,7 +16,7 @@
         :label-col="labelCol"
         :wrapper-col="wrapperCol"
       >
-        <a-form-model-item has-feedback label="Логин:" prop="login">
+        <a-form-model-item :has-feedback="true" label="Логин:" prop="login">
           <a-input
             v-model="form.login"
             size="large"
@@ -24,7 +24,7 @@
           />
         </a-form-model-item>
 
-        <a-form-model-item has-feedback label="Почта:" prop="mail">
+        <a-form-model-item :has-feedback="true" label="Почта:" prop="mail">
           <a-input
             v-model="form.mail"
             size="large"
@@ -32,7 +32,7 @@
           />
         </a-form-model-item>
 
-        <a-form-model-item has-feedback label="Пароль:" prop="password">
+        <a-form-model-item :has-feedback="true" label="Пароль:" prop="password">
           <a-input-password
             v-model="form.password"
             size="large"
@@ -42,7 +42,11 @@
           />
         </a-form-model-item>
 
-        <a-form-model-item label="Еще раз:" has-feedback prop="repassword">
+        <a-form-model-item
+          label="Еще раз:"
+          :has-feedback="true"
+          prop="repassword"
+        >
           <a-input-password
             v-model="form.repassword"
             size="large"

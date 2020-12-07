@@ -56,12 +56,12 @@ input {
 }
 
 .ant-card {
-  box-shadow: 4px 3px 15px 0px black;
+  box-shadow: 4px 3px 15px 0 black;
   border-radius: 10px;
   transition: 0.2s;
 }
 .ant-card:hover {
-  box-shadow: 8px 8px 17px 0px black;
+  box-shadow: 8px 8px 17px 0 black;
   /*transform: scale(1.01);*/
 }
 </style>

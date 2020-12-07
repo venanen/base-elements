@@ -24,5 +24,4 @@ export default {
   RESET_ERROR: (state) => {
     state.error.hasError = false
   },
-  OK: (state, payload) => {},
 }
