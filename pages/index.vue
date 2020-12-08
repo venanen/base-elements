@@ -1,49 +1,43 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">base-elements 123321</h1>
-      <div class="links">
-        <nuxt-link to="/auth"> Documentation </nuxt-link>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="container-fluid">
+    <button @click="testRun">1</button>
+    <button @click="testRun">2</button>
   </div>
 </template>
 
 <script>
 export default {
-  middleware: 'auth',
+  // TODO убрать комментарий
+  // middleware: 'auth',
+  data() {
+    return {
+      test: 0,
+    }
+  },
+  mounted() {
+    // this.testRun()
+  },
+  methods: {
+    testRun() {
+      const ref = this.$fire.firestore.collection('base-elements')
+
+      ref.get().then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.id, '=>', doc.data())
+        })
+      })
+    },
+    add() {
+      this.$fire.firestore.collection('base').add({
+        count: 124,
+        group: 0,
+        name: 'ddf',
+        quanity: 10,
+        reference: '',
+      })
+    },
+  },
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
+<style></style>

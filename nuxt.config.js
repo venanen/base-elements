@@ -59,6 +59,11 @@ export default {
         },
         ssr: true,
       },
+      database: {
+        emulatorPort: 9000,
+        emulatorHost: 'localhost',
+      },
+      firestore: {},
     },
   },
 
