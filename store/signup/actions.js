@@ -5,12 +5,15 @@ import {
   RESET_ERROR,
 } from '@/store/signup/types'
 export default {
-  signUp({ commit }, { email, password }) {
+  signUp({ commit }, { email, password, name }) {
     commit(START_SIGNUP_LOADING)
     this.$fire.auth
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         commit(STOP_SIGNUP_LOADING)
+        user.user.updateProfile({
+          displayName: name,
+        })
         commit('user/LOGIN', { user }, { root: true })
         commit(RESET_ERROR)
       })

@@ -154,6 +154,7 @@ export default {
           this.$store.dispatch('signup/signUp', {
             email: this.form.mail,
             password: this.form.password,
+            name: this.form.name,
           })
         }
       })
