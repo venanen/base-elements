@@ -3,7 +3,12 @@
     <div id="form-image-bg" :class="{ 'more-blur': moreBlur }"></div>
     <div class="container-fluid form-container">
       <div class="row h100 middle-xs center-xs">
-        <div class="col" @mouseenter="setMoreBlur" @mouseleave="setLessBlur">
+        <div
+          id="container-content"
+          class="col"
+          @mouseenter="setMoreBlur"
+          @mouseleave="setLessBlur"
+        >
           <slot></slot>
         </div>
       </div>

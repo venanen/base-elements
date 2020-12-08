@@ -16,16 +16,18 @@
         :label-col="labelCol"
         :wrapper-col="wrapperCol"
       >
-        <a-form-model-item :has-feedback="true" label="Логин:" prop="login">
+        <a-form-model-item :has-feedback="true" label="ФИО:" prop="name">
           <a-input
-            v-model="form.login"
+            id="login"
+            v-model="form.name"
             size="large"
-            placeholder="Введите логин"
+            placeholder="Введите имя"
           />
         </a-form-model-item>
 
         <a-form-model-item :has-feedback="true" label="Почта:" prop="mail">
           <a-input
+            id="mail"
             v-model="form.mail"
             size="large"
             placeholder="Введите почту"
@@ -34,6 +36,7 @@
 
         <a-form-model-item :has-feedback="true" label="Пароль:" prop="password">
           <a-input-password
+            id="password"
             v-model="form.password"
             size="large"
             placeholder="Введите пароль"
@@ -48,6 +51,7 @@
           prop="repassword"
         >
           <a-input-password
+            id="repassword"
             v-model="form.repassword"
             size="large"
             placeholder="Введите пароль"
@@ -89,11 +93,10 @@ export default {
         repassword: '',
       },
       rules: {
-        login: [
+        name: [
           {
             required: true,
             message: 'Заполните это поле',
-            trigger: 'change',
           },
           {
             min: 4,
