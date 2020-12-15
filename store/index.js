@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './auth/index'
 import user from './user/index'
 import signup from './signup/index'
+import base from './base/index'
 Vue.use(Vuex)
 // eslint-disable-next-line no-unused-vars
 const store = new Vuex.Store({
@@ -10,5 +11,6 @@ const store = new Vuex.Store({
     auth,
     user,
     signup,
+    base,
   },
 })

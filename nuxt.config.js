@@ -94,4 +94,10 @@ export default {
     // only set this true for testing and remember to always clear your browser cache in development
     dev: false,
   },
+  vue: {
+    config: {
+      productionTip: false,
+      devtools: true,
+    },
+  },
 }
